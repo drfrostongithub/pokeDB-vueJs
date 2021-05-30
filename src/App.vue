@@ -1,14 +1,17 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <b-nav tabs>
+      <b-nav-item active> <router-link to="/">Home</router-link></b-nav-item>
+      <b-nav-item>
+        <router-link to="/about">About</router-link>
+      </b-nav-item>
+    </b-nav>
+    <router-view />
   </div>
 </template>
 
 <style lang="scss">
+@import "./assets/scss/colours_vars.scss";
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -17,16 +20,21 @@
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+body {
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+body,
+p,
+li,
+input,
+select,
+button {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: $colourText;
 }
 </style>
