@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="unselectable">
     <b-nav tabs>
       <b-nav-item active> <router-link to="/">Home</router-link></b-nav-item>
       <b-nav-item>
@@ -24,6 +24,7 @@ body {
   background-color: #f5f5f5;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 
 body,
@@ -36,5 +37,13 @@ button {
   font-weight: 400;
   font-style: normal;
   color: $colourText;
+}
+
+.unselectable {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 </style>

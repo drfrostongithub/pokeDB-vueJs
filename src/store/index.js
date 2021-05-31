@@ -55,7 +55,6 @@ export default new Vuex.Store({
         url: `${this.state.apiUrl}/type/`
       })
         .then(({ data }) => {
-          console.log(data.results)
           context.commit('SET_TYPES', data.results)
         })
         .catch(err => {
@@ -68,7 +67,7 @@ export default new Vuex.Store({
         url: `${this.state.apiUrl}/pokemon/${payload}`
       })
         .then(({ data }) => {
-          // console.log(data)
+          console.log(data)
           context.commit('SET_POKEMON', data)
           context.commit('SET_MODAL', true)
         })

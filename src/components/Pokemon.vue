@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <b-dropdown
-        text="All pokemon types"
+        text="Pokemon types"
         block
         variant="primary"
         class="m-2"

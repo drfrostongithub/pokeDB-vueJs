@@ -7,12 +7,7 @@
 <script>
 export default {
   name: 'PokeByType',
-  props: ['pokemonType'],
-  data () {
-    return {
-      text: ''
-    }
-  }
+  props: ['pokemonType']
 }
 </script>
 

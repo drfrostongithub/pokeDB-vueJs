@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="alert alert-primary" role="alert">
-      PokemonDB
+      PokeDB
     </div>
     <Pokemon />
   </div>
