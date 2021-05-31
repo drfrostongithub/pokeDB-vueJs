@@ -10,6 +10,8 @@ const offset = 0
 export default new Vuex.Store({
   state: {
     pokeLists: [],
+    prevLists: [],
+    nextLists: [],
     pokemonDetails: [],
     allPokemonTypes: [],
     showDetail: false,
@@ -28,6 +30,12 @@ export default new Vuex.Store({
     },
     SET_TYPES (state, payload) {
       state.allPokemonTypes = payload
+    },
+    SET_PREV (state, payload) {
+      state.prevLists = payload
+    },
+    SET_NEXT (state, payload) {
+      state.nextLists = payload
     }
   },
   actions: {
@@ -43,8 +51,29 @@ export default new Vuex.Store({
             el.imgUrl = `${this.state.imageUrl}${el._id}`
             return el
           })
-          // console.log(newData)
           context.commit('SET_POKEMONS', newData)
+          context.commit('SET_PREV', res.data.previous)
+          context.commit('SET_NEXT', res.data.next)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    changeListPokemons (context, payload) {
+      axios({
+        method: 'GET',
+        url: `${payload}`
+      })
+        .then(res => {
+          const newData = res.data.results.map(el => {
+            const id = el.url.split('/')
+            el._id = Number(id[6])
+            el.imgUrl = `${this.state.imageUrl}${el._id}`
+            return el
+          })
+          context.commit('SET_POKEMONS', newData)
+          context.commit('SET_PREV', res.data.previous)
+          context.commit('SET_NEXT', res.data.next)
         })
         .catch(err => {
           console.log(err)
@@ -89,8 +118,9 @@ export default new Vuex.Store({
             el.imgUrl = `${this.state.imageUrl}${el._id}`
             return el
           })
-          console.log(newData)
           context.commit('SET_POKEMONS', newData)
+          context.commit('SET_PREV', false)
+          context.commit('SET_NEXT', false)
         })
         .catch(err => {
           console.log(err)

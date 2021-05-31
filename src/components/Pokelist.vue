@@ -16,9 +16,6 @@
 export default {
   name: 'Pokelist',
   props: ['pokemon'],
-  data () {
-    return {}
-  },
   methods: {
     fetchPokemonByNameOrID (id) {
       this.$store.dispatch('fetchPokemonByNameOrID', id)

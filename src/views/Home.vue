@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <div class="alert alert-primary" role="alert">
+      <b-icon icon="server"></b-icon>
       PokeDB
     </div>
     <Pokemon />

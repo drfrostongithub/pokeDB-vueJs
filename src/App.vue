@@ -1,8 +1,13 @@
 <template>
   <div id="app" class="unselectable">
     <b-nav tabs>
-      <b-nav-item active> <router-link to="/">Home</router-link></b-nav-item>
+      <b-nav-item active>
+        <b-icon icon="house-door-fill">
+        </b-icon>
+        <router-link to="/">Home</router-link></b-nav-item>
       <b-nav-item>
+        <b-icon icon="journal-bookmark">
+        </b-icon>
         <router-link to="/about">About</router-link>
       </b-nav-item>
     </b-nav>
