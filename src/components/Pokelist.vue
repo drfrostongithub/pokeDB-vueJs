@@ -5,11 +5,10 @@
     img-alt="Image"
     img-top
     tag="article"
-    style="max-width: 12rem"
+    style="max-width: 10rem"
     class="mb-2 pokecard"
     @click="fetchPokemonByNameOrID(pokemon._id)"
   >
-    <!-- {{typeof pokemon._id}} -->
   </b-card>
 </template>
 
@@ -33,5 +32,8 @@ export default {
 .pokecard:hover {
   cursor: pointer;
   background: $colourPositive;
+}
+h4 {
+  font-size: 1em;
 }
 </style>

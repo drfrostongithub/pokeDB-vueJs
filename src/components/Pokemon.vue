@@ -1,7 +1,21 @@
 <template>
   <div class="container">
     <div class="row">
-      <PokeByType />
+      <b-dropdown
+        text="All pokemon types"
+        block
+        variant="primary"
+        class="m-2"
+        menu-class="w-100"
+        style="width: 100%"
+      >
+        <PokeByType
+          v-for="(pokemonType, index) in pokemonTypes"
+          :key="pokemonType + index"
+          :pokemonType="pokemonType"
+          name="pokeType"
+        />
+      </b-dropdown>
 
       <Pokedetail />
 
@@ -9,9 +23,8 @@
         v-for="(pokemon, index) in pokemons"
         :key="pokemon + index"
         :pokemon="pokemon"
-        name="pokelist"
+        name="pokeList"
       />
-
     </div>
   </div>
 </template>
@@ -29,18 +42,22 @@ export default {
     PokeByType
   },
   computed: {
+    // All Pokemons
     pokemons () {
       return this.$store.state.pokeLists
     },
-    showDetail () {
-      return this.$store.state.showDetail
-    },
+    // Pokemon Detail (one)
     pokemon () {
-      return this.$store.state.pokemonDetail
+      return this.$store.state.pokemonDetails
+    },
+    // All Pokemon Types
+    pokemonTypes () {
+      return this.$store.state.allPokemonTypes
     }
   },
   created () {
     this.$store.dispatch('fetchPokemons')
+    this.$store.dispatch('fetchPokemonTypes')
   }
 }
 </script>
@@ -61,5 +78,11 @@ export default {
 .row {
   justify-content: space-evenly;
   max-width: 50%;
+}
+
+.dropdown {
+  button {
+    width: 100%;
+  }
 }
 </style>

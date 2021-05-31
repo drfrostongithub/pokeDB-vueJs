@@ -1,5 +1,13 @@
 <template>
-  <section v-if="showDetail">Modal</section>
+  <section v-if="showDetail">
+    <div class="pokeDetail">
+      {{pokemonDetails.name}}
+      <b-button variant="outline-danger"
+      @click.prevent="closeDetail"
+        >Close</b-button
+      >
+    </div>
+  </section>
 </template>
 
 <script>
@@ -9,10 +17,15 @@ export default {
   computed: {
     showDetail () {
       return this.$store.state.showDetail
+    },
+    pokemonDetails () {
+      return this.$store.state.pokemonDetails
     }
   },
-  data () {
-    return {}
+  methods: {
+    closeDetail () {
+      this.$store.commit('SET_MODAL', false)
+    }
   }
 }
 </script>

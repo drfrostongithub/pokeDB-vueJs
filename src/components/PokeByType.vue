@@ -1,16 +1,13 @@
 <template>
   <div>
-    <b-form-input
-      v-model="text"
-      placeholder="Enter Pokemon Type"
-    />
-    <!-- <div class="mt-2">Value: {{ text.toLowerCase() }}</div> -->
+    <b-dropdown-item href="#">{{pokemonType.name.charAt(0).toUpperCase() + pokemonType.name.slice(1)}}</b-dropdown-item>
   </div>
 </template>
 
 <script>
 export default {
   name: 'PokeByType',
+  props: ['pokemonType'],
   data () {
     return {
       text: ''
@@ -19,5 +16,8 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+b-dropdown-item {
+  display: flex;
+}
 </style>

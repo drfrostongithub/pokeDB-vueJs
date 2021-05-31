@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-// import PokeAPI from '@/services/pokeapi'
 
 Vue.use(Vuex)
 
@@ -11,7 +10,8 @@ const offset = 0
 export default new Vuex.Store({
   state: {
     pokeLists: [],
-    pokemonDetail: [],
+    pokemonDetails: [],
+    allPokemonTypes: [],
     showDetail: false,
     apiUrl: 'https://pokeapi.co/api/v2',
     imageUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
@@ -21,10 +21,13 @@ export default new Vuex.Store({
       state.pokeLists = payload
     },
     SET_POKEMON (state, payload) {
-      state.pokemonDetail = payload
+      state.pokemonDetails = payload
     },
     SET_MODAL (state, payload) {
       state.showDetail = payload
+    },
+    SET_TYPES (state, payload) {
+      state.allPokemonTypes = payload
     }
   },
   actions: {
@@ -40,15 +43,26 @@ export default new Vuex.Store({
             el.imgUrl = `${this.state.imageUrl}${el._id}`
             return el
           })
-          // console.log(newData)
           context.commit('SET_POKEMONS', newData)
         })
         .catch(err => {
           console.log(err)
         })
     },
+    fetchPokemonTypes (context) {
+      axios({
+        method: 'GET',
+        url: `${this.state.apiUrl}/type/`
+      })
+        .then(({ data }) => {
+          console.log(data.results)
+          context.commit('SET_TYPES', data.results)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
     fetchPokemonByNameOrID (context, payload) {
-      console.log(payload)
       axios({
         method: 'GET',
         url: `${this.state.apiUrl}/pokemon/${payload}`
@@ -71,7 +85,6 @@ export default new Vuex.Store({
         .then(({ data }) => {
           // console.log(data)
           context.commit('SET_POKEMONS', data.pokemon)
-          // context.commit('SET_MODAL', true)
         })
         .catch(err => {
           console.log(err)
