@@ -12,6 +12,7 @@ export default new Vuex.Store({
   state: {
     pokelists: [],
     pokemon: {},
+    showDetail: false,
     apiUrl: 'https://pokeapi.co/api/v2',
     imageUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
   },
@@ -30,12 +31,13 @@ export default new Vuex.Store({
         url: `${this.state.apiUrl}/pokemon?limit=${limit}&offset=${offset}`
       })
         .then(res => {
-          console.log(res.data)
           const newData = res.data.results.map(el => {
             const id = el.url.split('/')
-            el.imgUrl = `${this.state.imageUrl}${Number(id[6])}`
+            el._id = Number(id[6])
+            el.imgUrl = `${this.state.imageUrl}${el._id}`
             return el
           })
+          // console.log(newData)
           context.commit('SET_POKEMONS', newData)
         })
         .catch(err => {
@@ -43,10 +45,9 @@ export default new Vuex.Store({
         })
     },
     fetchPokemonByName (context) {
-      const example = 'pikachu'
       axios({
         method: 'GET',
-        url: `${this.state.apiUrl}/pokemon/${example}`
+        url: `${this.state.apiUrl}/pokemon/${context}`
       })
         .then(({ data }) => {
           console.log(data)

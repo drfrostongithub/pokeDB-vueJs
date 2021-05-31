@@ -5,8 +5,9 @@
     img-alt="Image"
     img-top
     tag="article"
-    style="max-width: 20rem"
-    class="mb-2"
+    style="max-width: 12rem"
+    class="mb-2 pokecard"
+    @click="openDetail(pokemon.name, index)"
   >
   </b-card>
 </template>
@@ -15,11 +16,19 @@
 export default {
   name: 'Pokelist',
   props: ['pokemon'],
+  methods: {
+    openDetail () {}
+  },
   data () {
     return {}
   }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import "../assets/scss/colours_vars.scss";
+.pokecard:hover {
+  cursor: pointer;
+  background: $colourPositive;
+}
 </style>

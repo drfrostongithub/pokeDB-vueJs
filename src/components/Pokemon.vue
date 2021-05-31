@@ -1,15 +1,16 @@
 <template>
   <div class="container">
-    <h1>Pokemons</h1>
     <div class="row">
+      <Pokesearch />
+
       <Pokelist
-        v-for="pokemon in pokemons"
-        :key="pokemon.id"
+        v-for="(pokemon, index) in pokemons"
+        :key="pokemon + index"
         :pokemon="pokemon"
         name="pokelist"
       />
 
-      <Pokedetail />
+      <Pokedetail v-if="showDetail" />
     </div>
   </div>
 </template>
@@ -17,16 +18,21 @@
 <script>
 import Pokelist from './Pokelist'
 import Pokedetail from './Pokedetail'
+import Pokesearch from './Pokesearch'
 
 export default {
   name: 'Pokemon',
   components: {
     Pokelist,
-    Pokedetail
+    Pokedetail,
+    Pokesearch
   },
   computed: {
     pokemons () {
       return this.$store.state.pokelists
+    },
+    showDetail () {
+      return this.$store.state.showDetail
     }
   },
   created () {
@@ -40,12 +46,16 @@ export default {
 .container {
   display: flex;
   flex-direction: column;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
   min-width: -webkit-fill-available;
   background: radial-gradient($colourNotification, $colourGreyBackground);
 }
 
 .row {
-  justify-content: center;
+  justify-content: space-evenly;
+  max-width: 50%;
 }
 </style>
