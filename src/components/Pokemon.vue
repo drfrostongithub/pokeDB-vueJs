@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <div class="row">
-      <Pokesearch />
+      <PokeByType />
+
+      <Pokedetail />
 
       <Pokelist
         v-for="(pokemon, index) in pokemons"
@@ -10,7 +12,6 @@
         name="pokelist"
       />
 
-      <Pokedetail v-if="showDetail" />
     </div>
   </div>
 </template>
@@ -18,21 +19,24 @@
 <script>
 import Pokelist from './Pokelist'
 import Pokedetail from './Pokedetail'
-import Pokesearch from './Pokesearch'
+import PokeByType from './PokeByType'
 
 export default {
   name: 'Pokemon',
   components: {
     Pokelist,
     Pokedetail,
-    Pokesearch
+    PokeByType
   },
   computed: {
     pokemons () {
-      return this.$store.state.pokelists
+      return this.$store.state.pokeLists
     },
     showDetail () {
       return this.$store.state.showDetail
+    },
+    pokemon () {
+      return this.$store.state.pokemonDetail
     }
   },
   created () {

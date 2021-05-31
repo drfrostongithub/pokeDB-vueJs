@@ -7,8 +7,9 @@
     tag="article"
     style="max-width: 12rem"
     class="mb-2 pokecard"
-    @click="openDetail(pokemon.name, index)"
+    @click="fetchPokemonByNameOrID(pokemon._id)"
   >
+    <!-- {{typeof pokemon._id}} -->
   </b-card>
 </template>
 
@@ -16,11 +17,13 @@
 export default {
   name: 'Pokelist',
   props: ['pokemon'],
-  methods: {
-    openDetail () {}
-  },
   data () {
     return {}
+  },
+  methods: {
+    fetchPokemonByNameOrID (id) {
+      this.$store.dispatch('fetchPokemonByNameOrID', id)
+    }
   }
 }
 </script>

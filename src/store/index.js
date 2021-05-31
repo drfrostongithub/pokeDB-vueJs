@@ -10,18 +10,21 @@ const offset = 0
 
 export default new Vuex.Store({
   state: {
-    pokelists: [],
-    pokemon: {},
+    pokeLists: [],
+    pokemonDetail: [],
     showDetail: false,
     apiUrl: 'https://pokeapi.co/api/v2',
     imageUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
   },
   mutations: {
     SET_POKEMONS (state, payload) {
-      state.pokelists = payload
+      state.pokeLists = payload
     },
     SET_POKEMON (state, payload) {
-      state.pokemon = payload
+      state.pokemonDetail = payload
+    },
+    SET_MODAL (state, payload) {
+      state.showDetail = payload
     }
   },
   actions: {
@@ -44,14 +47,31 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
-    fetchPokemonByName (context) {
+    fetchPokemonByNameOrID (context, payload) {
+      console.log(payload)
       axios({
         method: 'GET',
-        url: `${this.state.apiUrl}/pokemon/${context}`
+        url: `${this.state.apiUrl}/pokemon/${payload}`
       })
         .then(({ data }) => {
-          console.log(data)
+          // console.log(data)
           context.commit('SET_POKEMON', data)
+          context.commit('SET_MODAL', true)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    fetchPokemonByType (context, payload) {
+      // console.log(payload)
+      axios({
+        method: 'GET',
+        url: `${this.state.apiUrl}/type/${payload}`
+      })
+        .then(({ data }) => {
+          // console.log(data)
+          context.commit('SET_POKEMONS', data.pokemon)
+          // context.commit('SET_MODAL', true)
         })
         .catch(err => {
           console.log(err)
