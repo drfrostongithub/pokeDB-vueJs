@@ -93,7 +93,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/scss/colours_vars.scss";
+@import "../assets/scss/colours.scss";
 h1 {
   padding: 0;
   margin: 0;

@@ -1,6 +1,9 @@
 <template>
   <div>
-    <b-dropdown-item href="#" @click.prevent="fetchPokemonByType(pokemonType.url)">{{pokemonType.name.charAt(0).toUpperCase() + pokemonType.name.slice(1)}}</b-dropdown-item>
+    <b-dropdown-item
+    class="capitalize"
+    href="#"
+    @click.prevent="fetchPokemonByType(pokemonType.url)">{{pokemonType.name}}</b-dropdown-item>
   </div>
 </template>
 

@@ -83,7 +83,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/scss/colours_vars.scss";
+@import "../assets/scss/colours.scss";
 .container {
   display: flex;
   flex-direction: column;

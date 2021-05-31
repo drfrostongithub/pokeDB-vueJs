@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/scss/colours_vars.scss";
+@import "../assets/scss/colours.scss";
 .pokecard:hover {
   cursor: pointer;
   background: $colourPositive;
