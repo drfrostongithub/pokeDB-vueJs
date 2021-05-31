@@ -43,6 +43,7 @@ export default new Vuex.Store({
             el.imgUrl = `${this.state.imageUrl}${el._id}`
             return el
           })
+          // console.log(newData)
           context.commit('SET_POKEMONS', newData)
         })
         .catch(err => {
@@ -55,6 +56,7 @@ export default new Vuex.Store({
         url: `${this.state.apiUrl}/type/`
       })
         .then(({ data }) => {
+          // console.log(data.results)
           context.commit('SET_TYPES', data.results)
         })
         .catch(err => {
@@ -67,7 +69,6 @@ export default new Vuex.Store({
         url: `${this.state.apiUrl}/pokemon/${payload}`
       })
         .then(({ data }) => {
-          console.log(data)
           context.commit('SET_POKEMON', data)
           context.commit('SET_MODAL', true)
         })
@@ -76,14 +77,20 @@ export default new Vuex.Store({
         })
     },
     fetchPokemonByType (context, payload) {
-      // console.log(payload)
       axios({
         method: 'GET',
-        url: `${this.state.apiUrl}/type/${payload}`
+        url: `${payload}`
       })
         .then(({ data }) => {
-          // console.log(data)
-          context.commit('SET_POKEMONS', data.pokemon)
+          const newData = data.pokemon.map(el => {
+            const id = el.pokemon.url.split('/')
+            el.name = el.pokemon.name
+            el._id = Number(id[6])
+            el.imgUrl = `${this.state.imageUrl}${el._id}`
+            return el
+          })
+          console.log(newData)
+          context.commit('SET_POKEMONS', newData)
         })
         .catch(err => {
           console.log(err)

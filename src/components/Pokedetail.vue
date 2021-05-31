@@ -81,7 +81,6 @@ export default {
       return this.$store.state.showDetail
     },
     pokemonDetails () {
-      console.log(this.$store.state.pokemonDetails)
       return this.$store.state.pokemonDetails
     }
   },
@@ -95,9 +94,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/scss/colours_vars.scss";
-.capitalize {
-  text-transform: capitalize;
-}
 h1 {
   padding: 0;
   margin: 0;
@@ -159,6 +155,10 @@ h1 {
       justify-content: center;
     }
   }
+}
+
+.buttons {
+  padding-bottom: 5%;
 }
 p {
   margin: 0;

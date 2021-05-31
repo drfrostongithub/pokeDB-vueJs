@@ -1,13 +1,18 @@
 <template>
   <div>
-    <b-dropdown-item href="#">{{pokemonType.name.charAt(0).toUpperCase() + pokemonType.name.slice(1)}}</b-dropdown-item>
+    <b-dropdown-item href="#" @click.prevent="fetchPokemonByType(pokemonType.url)">{{pokemonType.name.charAt(0).toUpperCase() + pokemonType.name.slice(1)}}</b-dropdown-item>
   </div>
 </template>
 
 <script>
 export default {
   name: 'PokeByType',
-  props: ['pokemonType']
+  props: ['pokemonType'],
+  methods: {
+    fetchPokemonByType (url) {
+      this.$store.dispatch('fetchPokemonByType', url)
+    }
+  }
 }
 </script>
 

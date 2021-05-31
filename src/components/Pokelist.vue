@@ -1,12 +1,12 @@
 <template>
   <b-card
-    :title="pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)"
+    :title="pokemon.name"
     :img-src="pokemon.imgUrl + '.png'"
     img-alt="Image"
     img-top
     tag="article"
     style="max-width: 10rem"
-    class="mb-2 pokecard"
+    class="mb-2 pokecard capitalize"
     @click="fetchPokemonByNameOrID(pokemon._id)"
   >
   </b-card>

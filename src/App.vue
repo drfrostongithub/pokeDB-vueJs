@@ -46,4 +46,8 @@ button {
   -ms-user-select: none;
   user-select: none;
 }
+
+.capitalize {
+  text-transform: capitalize;
+}
 </style>
