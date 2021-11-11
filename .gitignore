@@ -2,6 +2,8 @@
 node_modules
 /dist
 vue.config.js
+/.github
+/.firebase
 
 # local env files
 .env.local
